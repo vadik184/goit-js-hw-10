@@ -28,16 +28,13 @@ fetchBreeds()
     );
   });
 
-//const showInfo = info => {
-
-//};
 selector.addEventListener('change', onSelect);
-function onSelect(evt) {
+function onSelect(event) {
   catInfo.classList.add('is-hidden');
   selector.classList.add('is-hidden');
   errorText.classList.add('is-hidden');
 
-  const selectBreedId = evt.currentTarget.value;
+  const selectBreedId = event.currentTarget.value;
 
   fetchCatByBreed(selectBreedId)
     .then(data => {
@@ -52,8 +49,6 @@ function onSelect(evt) {
       );
     });
 }
-
-//===== creteMarkup
 function markup(data) {
   const { breeds, url } = data[0];
   const { name, temperament, description } = breeds[0];
