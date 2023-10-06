@@ -10,7 +10,7 @@ function fetchBreeds() {
       return response.data;
     })
     .catch(error => {
-      console.error(error);
+      console.error(error.status);
     });
 }
 
@@ -21,7 +21,7 @@ function fetchCatByBreed(breedId) {
       return resp.data;
     })
     .catch(error => {
-      throw new Error(error.status);
+      console.error(error.status);
     });
 }
 
