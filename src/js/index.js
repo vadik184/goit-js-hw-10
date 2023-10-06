@@ -9,6 +9,8 @@ const loader = document.querySelector('.loader');
 const catInfo = document.querySelector('.cat-info');
 const errorText = document.querySelector('.error');
 
+loader.classList.add('is-hidden');
+errorText.classList.add('is-hidden');
 function getPetsList(breeds) {
   selector.innerHTML = breeds
     .map(breed => `<option value="${breed.id}">${breed.name}</option>`)
@@ -17,8 +19,6 @@ function getPetsList(breeds) {
 fetchBreeds()
   .then(result => {
     getPetsList(result);
-    loader.classList.toggle('is-hidden');
-    errorText.classList.toggle('is-hidden');
   })
   .then(() => new SlimSelect({ select: '.breed-select' }))
   .catch(() => {
@@ -30,17 +30,13 @@ fetchBreeds()
 
 selector.addEventListener('change', onSelect);
 function onSelect(event) {
-  catInfo.classList.add('is-hidden');
-  selector.classList.add('is-hidden');
-  errorText.classList.add('is-hidden');
-
+  loader.classList.toggle('is-hidden');
   const selectBreedId = event.currentTarget.value;
 
   fetchCatByBreed(selectBreedId)
     .then(data => {
       markup(data);
       loader.classList.add('is-hidden');
-      catInfo.classList.remove('is-hidden');
     })
     .catch(() => {
       Notiflix.Notify.failure(
