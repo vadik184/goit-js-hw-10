@@ -30,12 +30,14 @@ fetchBreeds()
 
 selector.addEventListener('change', onSelect);
 function onSelect(event) {
+  catInfo.classList.add('is-hidden');
   loader.classList.toggle('is-hidden');
   const selectBreedId = event.currentTarget.value;
 
   fetchCatByBreed(selectBreedId)
     .then(data => {
       markup(data);
+      catInfo.classList.toggle('is-hidden');
       loader.classList.add('is-hidden');
     })
     .catch(() => {
