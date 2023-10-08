@@ -39,6 +39,8 @@ function onSelect(event) {
       loader.classList.add('is-hidden');
     })
     .catch(() => {
+      catInfo.classList.toggle('is-hidden');
+      loader.classList.toggle('is-hidden');
       Notiflix.Notify.failure(
         `Oops! Something went wrong! Try reloading the page!`,
         { timeout: 4000, useIcon: false }
